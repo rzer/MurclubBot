@@ -34,7 +34,7 @@ package controllers {
 		
 		static public var isStarted:Boolean = false;
 		
-		public var scoreName:String = "scores.json";
+		public static var scoreName:String = "scores.json";
 		
 		public static function init():void {
 			
