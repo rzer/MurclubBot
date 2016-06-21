@@ -1,6 +1,6 @@
 package controllers {
 	import common.StringUtils;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import flash.net.SharedObject;
 	import simplify.ObjectEvent;
@@ -32,11 +32,11 @@ package controllers {
 				blockedIP = ipSO.data.blockedIP;
 			}
 			
-			Console.registerCommand("/addFilter", addFilter);
-			Console.registerCommand("/removeFilter", removeFilter);
-			Console.registerCommand("/filtersOn", filtersOn);
-			Console.registerCommand("/filtersOff", filtersOff);
-			Console.registerCommand("/banIP", banIP);
+			Console.register("/addFilter", addFilter);
+			Console.register("/removeFilter", removeFilter);
+			Console.register("/filtersOn", filtersOn);
+			Console.register("/filtersOff", filtersOff);
+			Console.register("/banIP", banIP);
 			
 			Console.info("Room filters:");
 			Console.tip(

@@ -1,8 +1,12 @@
 package controllers {
 	
 	import common.ArrayUtils;
-	import elements.Console;
+	import common.QuizQuestions;
+	import simplify.Console;
 	import elements.Server;
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
 	import simplify.Call;
 	import simplify.WebLoader;
 	import common.StringUtils;
@@ -26,18 +30,37 @@ package controllers {
 
 		private static var winner:String;
 		
+		private static var scores:Object = {};
 		
 		static public var isStarted:Boolean = false;
 		
 		public static function init():void {
 			
-			Console.registerCommand("/startQuiz", start);
-			Console.registerCommand("/stopQuiz", stop);
-			Console.registerCommand("/setQuestion", setQuestion);
+			Console.register("/startQuiz", start);
+			Console.register("/stopQuiz", stop);
+			Console.register("/setQuestion", setQuestion);
 			
 			Console.info("Quiz:");
 			Console.tip("/startQuiz, /stopQuiz - запускаем/останавливаем викторину");
 			
+		}
+		
+		static private function readScores():void {
+			var file:File = new File(File.applicationDirectory.nativePath + "/scores.json");
+			var fs:FileStream = new FileStream();
+			
+			fs.open(file, FileMode.READ);
+			scores = JSON.parse(fs.readUTFBytes(fs.bytesAvailable));
+			fs.close();
+		}
+		
+		static private function writeScores():void {
+			
+			var file:File = new File(File.applicationDirectory.nativePath + "/scores.json");
+			var fs:FileStream = new FileStream();
+			fs.open(file, FileMode.WRITE);
+			fs.writeUTFBytes(JSON.stringify(scores));
+			fs.close();
 		}
 		
 		static private function setQuestion(answer:String, question:String):void {
@@ -50,6 +73,8 @@ package controllers {
 			if (isStarted) return;
 			isStarted = true;
 			
+			readScores();
+			
 			Console.info("Quiz bot активирован");
 			You.say("Quiz bot активирован");
 			
@@ -58,10 +83,14 @@ package controllers {
 			
 		}
 		
+		
+		
 		public static function stop():void {
 			
 			if (!isStarted) return;
 			isStarted = false;
+			
+			writeScores();
 			
 			Console.info("Викторина остановлена");
 			You.say("Викторина остановлена");
@@ -69,6 +98,8 @@ package controllers {
 			Server.unbind("PRIVMSG", onMessage);
 			gameOver();
 		}
+		
+		
 		
 		private static function onMessage(e:Object):void {
 			
@@ -81,11 +112,8 @@ package controllers {
 		
 		
 		public static function selectQuestion():void {
-			numQuestion++;
-			WebLoader.json("http://reactive.cloudapp.net/api/trivia/randomQuestion?i=" + numQuestion, onQuestion);
-		}
-		
-		private static function onQuestion(data:Object):void {
+			
+			var data:Object = QuizQuestions.getRandom();
 			
 			question = data.question;
 			answer = data.answer;
@@ -172,12 +200,8 @@ package controllers {
 			
 			Console.info("Игрок " + Room.getNickname(userId) + " угадал!");
 			
-			WebLoader.json("http://reactive.cloudapp.net/api/trivia/addScore?id=" + userId + "&points=1&i=" + numQuestion, onUserInfo);
-		}
-		
-		private static function onUserInfo(data:Object):void {
-			
-			trace(JSON.stringify(data));
+			if (!scores[userId]) scores[userId] = 0;
+			scores[userId]++;
 			
 			var list:Array = [
 				"Да детка, это правильный ответ! +1 бал тебе.",
@@ -187,7 +211,7 @@ package controllers {
 			
 			var randomPhrase:String = list[Math.floor(list.length * Math.random())];
 			
-			You.publicMessage(winner, randomPhrase + " Всего: " + data.points);
+			You.publicMessage(winner, randomPhrase + " Всего: " + scores[userId]);
 			
 			Call.after(10000, selectQuestion);
 		}

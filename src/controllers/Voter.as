@@ -1,5 +1,5 @@
 package controllers {
-	import elements.Console;
+	import simplify.Console;
 	import simplify.Call;
 	/**
 	 * Голосовалка
@@ -14,9 +14,9 @@ package controllers {
 		
 		public static function init():void {
 			
-			Console.registerCommand("!голосование", startVoting);
-			Console.registerCommand("!за", voteYes);
-			Console.registerCommand("!против", voteNo);
+			Console.register("!голосование", startVoting);
+			Console.register("!за", voteYes);
+			Console.register("!против", voteNo);
 			
 			Console.info("Voter:");
 			Console.tip("!голосование вопрос, !за, !против");

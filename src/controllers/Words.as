@@ -1,6 +1,6 @@
 package controllers {
 	import common.WordChecker;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import simplify.Call;
 	import simplify.ObjectEvent;
@@ -41,8 +41,8 @@ package controllers {
 		
 		public static function init():void {
 			
-			Console.registerCommand("/startWords", start);
-			Console.registerCommand("/stopWords", stop);
+			Console.register("/startWords", start);
+			Console.register("/stopWords", stop);
 			
 			Console.info("Слова:");
 			Console.tip("/startWords, /stopWords  - запускаем/останавливаем викторину на слова");

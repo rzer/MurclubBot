@@ -1,7 +1,7 @@
 package controllers {
 	
 	import common.GifUploader;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import common.StringUtils;
 	import flash.events.Event;
@@ -21,19 +21,19 @@ package controllers {
 		
 		public static function init():void {
 			
-			Console.registerCommand("/join", join);
-			Console.registerCommand("/nick", changeNickname);
-			Console.registerCommand("/jump", jump);
-			Console.registerCommand("/prv", privateMessage);
-			Console.registerCommand("/pub", publicMessage);
-			Console.registerCommand("/say", say);
-			Console.registerCommand("/shoot", shoot);
-			Console.registerCommand("/heal", heal);
-			Console.registerCommand("/audio", audio);
-			Console.registerCommand("/song", song);
-			Console.registerCommand("/advertisment", advertisment);
-			Console.registerCommand("/speak", speak);
-			Console.registerCommand("/gif", gif);
+			Console.register("/join", join);
+			Console.register("/nick", changeNickname);
+			Console.register("/jump", jump);
+			Console.register("/prv", privateMessage);
+			Console.register("/pub", publicMessage);
+			Console.register("/say", say);
+			Console.register("/shoot", shoot);
+			Console.register("/heal", heal);
+			Console.register("/audio", audio);
+			Console.register("/song", song);
+			Console.register("/advertisment", advertisment);
+			Console.register("/speak", speak);
+			Console.register("/gif", gif);
 			
 			Console.info("Бот:");
 			

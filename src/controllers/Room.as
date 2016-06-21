@@ -2,7 +2,7 @@ package controllers {
 	
 	import air.update.events.DownloadErrorEvent;
 	import common.StringUtils;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import simplify.Call;
 	import simplify.ObjectEvent;
@@ -19,14 +19,14 @@ package controllers {
 		
 		public static function init():void {
 			
-			Console.registerCommand("/detectAdmins", detectAdmins);
-			Console.registerCommand("/userlist", getUserList);
-			Console.registerCommand("/eusr", emulateUser);
-			Console.registerCommand("/eprv", emulatePrivateMassage);
-			Console.registerCommand("/epub", emulatePublicMassage);
-			Console.registerCommand("/mid", getUserId);
-			Console.registerCommand("/who", who);
-			Console.registerCommand("/online", online);
+			Console.register("/detectAdmins", detectAdmins);
+			Console.register("/userlist", getUserList);
+			Console.register("/eusr", emulateUser);
+			Console.register("/eprv", emulatePrivateMassage);
+			Console.register("/epub", emulatePublicMassage);
+			Console.register("/mid", getUserId);
+			Console.register("/who", who);
+			Console.register("/online", online);
 			
 			Console.info("Комната:");
 			

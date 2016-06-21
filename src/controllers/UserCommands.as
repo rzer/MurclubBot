@@ -1,6 +1,6 @@
 package controllers {
 	import common.StringUtils;
-	import elements.Console;
+	import simplify.Console;
 	import flash.events.Event;
 	import flash.utils.ByteArray;
 	import flash.utils.getTimer;
@@ -26,16 +26,16 @@ package controllers {
 		public static var votes:Object = { };
 		
 		public static function init():void {
-			Console.registerCommand("!онлайн", online);
-			Console.registerCommand("!кто", who);
-			Console.registerCommand("!инфометр", infometer);
-			Console.registerCommand("!мафия", wantMafia);
-			Console.registerCommand("!слова", wantWords);
-			Console.registerCommand("!викторина", wantQuiz);
-			Console.registerCommand("!стоп", wantStop);
-			Console.registerCommand("!бан", voteBan);
-			Console.registerCommand("!?", commands);
-			Console.registerCommand("!факт", getFact);
+			Console.register("!онлайн", online);
+			Console.register("!кто", who);
+			Console.register("!инфометр", infometer);
+			Console.register("!мафия", wantMafia);
+			Console.register("!слова", wantWords);
+			Console.register("!викторина", wantQuiz);
+			Console.register("!стоп", wantStop);
+			Console.register("!бан", voteBan);
+			Console.register("!?", commands);
+			Console.register("!факт", getFact);
 		}
 		
 		static private function getFact():void {

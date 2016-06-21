@@ -2,7 +2,7 @@ package controllers {
 	import common.ArrayUtils;
 	import common.MafiaPhrases;
 	import common.MafiaPlayer;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import simplify.Call;
 	import simplify.ObjectEvent;
@@ -112,8 +112,8 @@ package controllers {
 				[MAFIA, MAFIA, BOSS_OR_SLUT, WEREWOLF, CIVILIAN, CIVILIAN, KOMSOMOL, DOCTOR, JOURNALIST, JUDGE, OPER, MANIAC_OR_MIRROR],
 			];
 			
-			Console.registerCommand("/startMafia", start);
-			Console.registerCommand("/stopMafia", stop);
+			Console.register("/startMafia", start);
+			Console.register("/stopMafia", stop);
 			
 			Console.info("Mafia:");
 			Console.tip("/startMafia, /stopMafia - запускаем/останавливаем мафию");

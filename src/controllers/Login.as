@@ -1,5 +1,5 @@
 package controllers {
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -28,7 +28,7 @@ package controllers {
 		private static var hash:String = "";
 		
 		public static function init():void {
-			Console.registerCommand("/login", login);
+			Console.register("/login", login);
 			Console.info("Авторизация:");
 			Console.tip("/login email password - авторизация в мурклубе");
 		}

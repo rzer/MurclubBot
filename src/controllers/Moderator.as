@@ -1,5 +1,5 @@
 package controllers {
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import common.StringUtils;
 	
@@ -12,10 +12,10 @@ package controllers {
 		
 		public static function init():void {
 			
-			Console.registerCommand("/ban", ban);
-			Console.registerCommand("/unban", unban);
-			Console.registerCommand("/prison", prison);
-			Console.registerCommand("/unprison", unprison);
+			Console.register("/ban", ban);
+			Console.register("/unban", unban);
+			Console.register("/prison", prison);
+			Console.register("/unprison", unprison);
 			
 			Console.info("Модератор:");
 			Console.tip("/ban, /unban mID reason time - Забанить/Разбанить пользователя");

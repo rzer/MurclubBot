@@ -1,6 +1,6 @@
 package common {
 	import controllers.Login;
-	import elements.Console;
+	import simplify.Console;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;

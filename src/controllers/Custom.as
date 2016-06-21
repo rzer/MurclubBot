@@ -1,5 +1,5 @@
 package controllers {
-	import elements.Console;
+	import simplify.Console;
 	
 	
 	/**
@@ -24,7 +24,7 @@ package controllers {
 			Login.login();
 			
 			//Регистрируем функции как команды
-			Console.registerCommand("/test", test);
+			Console.register("/test", test);
 			
 			//Ниже добавляй подсказки в консоль
 			Console.info("Custom:");

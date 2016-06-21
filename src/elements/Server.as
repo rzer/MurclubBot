@@ -8,6 +8,7 @@ package elements {
 	import flash.events.ServerSocketConnectEvent;
 	import flash.net.Socket;
 	import simplify.Call;
+	import simplify.Console;
 	import simplify.ObjectEvent;
 	
 	/**
@@ -37,7 +38,7 @@ package elements {
 		}
 		
 		public static function init():void {
-			Console.registerCommand("/raw", raw);
+			Console.register("/raw", raw);
 			
 			Console.info("Сервер:");
 			Console.tip("/raw  - отправка 'сырой' команды");

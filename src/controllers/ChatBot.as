@@ -1,6 +1,6 @@
 package controllers {
 	import common.StringUtils;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import flash.events.Event;
 	import flash.net.URLLoader;

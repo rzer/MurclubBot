@@ -1,6 +1,7 @@
 package {
 	
 	import commands.LongCommand;
+	import common.QuizQuestions;
 	import common.StringUtils;
 	import controllers.ChatBot;
 	import controllers.Custom;
@@ -15,7 +16,7 @@ package {
 	import controllers.Voter;
 	import controllers.Words;
 	import controllers.You;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import flash.display.Sprite;
 	import flash.sampler._setSamplerCallback;
@@ -31,15 +32,14 @@ package {
 	 */
 	public class Main extends Sprite {
 		
-		[Embed(source = "../lib/iFlash 705.ttf", fontName="PixelFont", embedAsCFF= "false")]
-		public var PixelFont:Class;
-		
 		
 		public function Main():void {
 			
 			Console.init(this);
 			Console.write("MurClubBot v2.1. Авторы: rzer, fieign" + "A".charCodeAt(0) + ", " + "Z".charCodeAt(0));
+			Console.toggle();
 			
+			QuizQuestions.init();
 			Login.init();
 			Server.init();
 			Room.init();

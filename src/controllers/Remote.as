@@ -1,6 +1,6 @@
 package controllers {
 	import common.StringUtils;
-	import elements.Console;
+	import simplify.Console;
 	import elements.Server;
 	import flash.display.TriangleCulling;
 	import simplify.ObjectEvent;
@@ -28,10 +28,10 @@ package controllers {
 		
 		public static function init():void {
 						
-			Console.registerCommand("/grant", grant);
-			Console.registerCommand("/demote", demote);
-			Console.registerCommand("/console", console);
-			Console.registerCommand("/?", commandList);
+			Console.register("/grant", grant);
+			Console.register("/demote", demote);
+			Console.register("/console", console);
+			Console.register("/?", commandList);
 			
 			Console.info("Remote:");
 			Console.tip("/? - список команд, /console - подключить консоль, /grant, demote mID - разрешить временное выполнение команд на сервере");
