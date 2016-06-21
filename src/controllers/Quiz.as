@@ -34,6 +34,8 @@ package controllers {
 		
 		static public var isStarted:Boolean = false;
 		
+		public var scoreName:String = "scores.json";
+		
 		public static function init():void {
 			
 			Console.register("/startQuiz", start);
@@ -46,7 +48,10 @@ package controllers {
 		}
 		
 		static private function readScores():void {
-			var file:File = new File(File.applicationDirectory.nativePath + "/scores.json");
+			var file:File = new File(File.applicationDirectory.nativePath + "/" + scoreName);
+			
+			if (!file.exists) return;
+			
 			var fs:FileStream = new FileStream();
 			
 			fs.open(file, FileMode.READ);
@@ -56,7 +61,7 @@ package controllers {
 		
 		static private function writeScores():void {
 			
-			var file:File = new File(File.applicationDirectory.nativePath + "/scores.json");
+			var file:File = new File(File.applicationDirectory.nativePath + "/" + scoreName);
 			var fs:FileStream = new FileStream();
 			fs.open(file, FileMode.WRITE);
 			fs.writeUTFBytes(JSON.stringify(scores));
